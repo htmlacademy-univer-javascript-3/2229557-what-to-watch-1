@@ -1,7 +1,6 @@
 import Logo from '../logo/logo';
-import React from 'react';
 
-export default function Footer(): JSX.Element {
+export default function Footer() {
   return (
     <footer className="page-footer">
       <Logo />
