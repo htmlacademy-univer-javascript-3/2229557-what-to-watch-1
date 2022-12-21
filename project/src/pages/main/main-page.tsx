@@ -1,17 +1,98 @@
-import React from 'react';
 import FilmCard from '../../components/film-card/film-card';
 import Footer from '../../components/footer/footer';
 import Header from '../../components/header/header';
-import {Film} from '../../types/film.type';
+import {MainPageProp} from '../../types/main-page-props';
+import {FilmCardProps} from '../../types/film-card-props';
 
-const DEFAULT_FILM_CARD_HREF = 'film-page.html';
+const films: FilmCardProps[] = [
+  {
+    img: 'img/fantastic-beasts-the-crimes-of-grindelwald.jpg',
+    name: 'Fantastic Beasts: The Crimes of Grindelwald'
+  },
+  {
+    img: 'img/bohemian-rhapsody.jpg',
+    name: 'Bohemian Rhapsody',
+  },
+  {
+    img: 'img/macbeth.jpg',
+    name: 'Macbeth',
+  },
+  {
+    img: 'img/aviator.jpg',
+    name: 'Aviator',
+  },
+  {
+    img: 'img/we-need-to-talk-about-kevin.jpg',
+    name: 'We need to talk about Kevin',
+  },
+  {
+    img: 'img/what-we-do-in-the-shadows.jpg',
+    name: 'What We Do in the Shadows',
+  },
+  {
+    img: 'img/revenant.jpg',
+    name: 'Revenant',
+  },
+  {
+    img: 'img/johnny-english.jpg',
+    name: 'Johnny English',
+  },
+  {
+    img: 'img/shutter-island.jpg',
+    name: 'Shutter Island',
+  },
+  {
+    img: 'img/pulp-fiction.jpg',
+    name: 'Pulp Fiction',
+  },
+  {
+    img: 'img/no-country-for-old-men.jpg',
+    name: 'No Country for Old Men',
+  },
+  {
+    img: 'img/snatch.jpg',
+    name: 'Snatch',
+  },
+  {
+    img: 'img/moonrise-kingdom.jpg',
+    name: 'Moonrise Kingdom',
+  },
+  {
+    img: 'img/seven-years-in-tibet.jpg',
+    name: 'Seven Years in Tibet',
+  },
+  {
+    img: 'img/midnight-special.jpg',
+    name: 'Midnight Special',
+  },
+  {
+    img: 'img/war-of-the-worlds.jpg',
+    name: 'War of the Worlds',
+  },
+  {
+    img: 'img/dardjeeling-limited.jpg',
+    name: 'Dardjeeling Limited',
+  },
+  {
+    img: 'img/orlando.jpg',
+    name: 'Orlando',
+  },
+  {
+    img: 'img/mindhunter.jpg',
+    name: 'Mindhunter',
+  },
+  {
+    img: 'img/midnight-special.jpg',
+    name: 'Midnight Special',
+  },
+];
 
-export default function MainPage(props: Film): JSX.Element{
+function MainPage(props: MainPageProp): JSX.Element{
   return (
-    <React.Fragment>
+    <>
       <section className="film-card">
         <div className="film-card__bg">
-          <img src={props.imageUrl} alt={props.name}/>
+          <img src={props.img} alt={props.name}/>
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -33,7 +114,7 @@ export default function MainPage(props: Film): JSX.Element{
               <h2 className="film-card__title">{props.name}</h2>
               <p className="film-card__meta">
                 <span className="film-card__genre">{props.genre}</span>
-                <span className="film-card__year">{props.creationYear}</span>
+                <span className="film-card__year">{props.year}</span>
               </p>
 
               <div className="film-card__buttons">
@@ -81,105 +162,10 @@ export default function MainPage(props: Film): JSX.Element{
           </ul>
 
           <div className="catalog__films-list">
-            <FilmCard img={'img/fantastic-beasts-the-crimes-of-grindelwald.jpg'}
-              name={'Fantastic Beasts: The Crimes of Grindelwald'}
-              href={DEFAULT_FILM_CARD_HREF}
-            />
-
-            <FilmCard img={'img/bohemian-rhapsody.jpg'}
-              name={'Bohemian Rhapsody'}
-              href={DEFAULT_FILM_CARD_HREF}
-            />
-
-            <FilmCard img={'img/macbeth.jpg'}
-              name={'Macbeth'}
-              href={DEFAULT_FILM_CARD_HREF}
-            />
-
-            <FilmCard img={'img/aviator.jpg'}
-              name={'Aviator'}
-              href={DEFAULT_FILM_CARD_HREF}
-            />
-
-            <FilmCard img={'img/we-need-to-talk-about-kevin.jpg'}
-              name={'We need to talk about Kevin'}
-              href={DEFAULT_FILM_CARD_HREF}
-            />
-
-            <FilmCard img={'img/what-we-do-in-the-shadows.jpg'}
-              name={'What We Do in the Shadows'}
-              href={DEFAULT_FILM_CARD_HREF}
-            />
-
-            <FilmCard img={'img/revenant.jpg'}
-              name={'Revenant'}
-              href={DEFAULT_FILM_CARD_HREF}
-            />
-
-            <FilmCard img={'img/johnny-english.jpg'}
-              name={'Johnny English'}
-              href={DEFAULT_FILM_CARD_HREF}
-            />
-
-            <FilmCard img={'img/shutter-island.jpg'}
-              name={'Shutter Island'}
-              href={DEFAULT_FILM_CARD_HREF}
-            />
-
-            <FilmCard img={'img/pulp-fiction.jpg'}
-              name={'Pulp Fiction'}
-              href={DEFAULT_FILM_CARD_HREF}
-            />
-
-            <FilmCard img={'img/no-country-for-old-men.jpg'}
-              name={'No Country for Old Men'}
-              href={DEFAULT_FILM_CARD_HREF}
-            />
-
-            <FilmCard img={'img/snatch.jpg'}
-              name={'Snatch'}
-              href={DEFAULT_FILM_CARD_HREF}
-            />
-
-            <FilmCard img={'img/moonrise-kingdom.jpg'}
-              name={'Moonrise Kingdom'}
-              href={DEFAULT_FILM_CARD_HREF}
-            />
-
-            <FilmCard img={'img/seven-years-in-tibet.jpg'}
-              name={'Seven Years in Tibet'}
-              href={DEFAULT_FILM_CARD_HREF}
-            />
-
-            <FilmCard img={'img/midnight-special.jpg'}
-              name={'Midnight Special'}
-              href={DEFAULT_FILM_CARD_HREF}
-            />
-
-            <FilmCard img={'img/war-of-the-worlds.jpg'}
-              name={'War of the Worlds'}
-              href={DEFAULT_FILM_CARD_HREF}
-            />
-
-            <FilmCard img={'img/dardjeeling-limited.jpg'}
-              name={'Dardjeeling Limited'}
-              href={DEFAULT_FILM_CARD_HREF}
-            />
-
-            <FilmCard img={'img/orlando.jpg'}
-              name={'Orlando'}
-              href={DEFAULT_FILM_CARD_HREF}
-            />
-
-            <FilmCard img={'img/mindhunter.jpg'}
-              name={'Mindhunter'}
-              href={DEFAULT_FILM_CARD_HREF}
-            />
-
-            <FilmCard img={'img/midnight-special.jpg'}
-              name={'Midnight Special'}
-              href={DEFAULT_FILM_CARD_HREF}
-            />
+            {
+              films.map((film) =>
+                <FilmCard {...film} key={film.name}/>)
+            }
           </div>
 
           <div className="catalog__more">
@@ -189,6 +175,7 @@ export default function MainPage(props: Film): JSX.Element{
 
         <Footer />
       </div>
-    </React.Fragment>
+    </>
   );
 }
+export default MainPage;
