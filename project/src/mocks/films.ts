@@ -18,7 +18,7 @@ export const mockFilms: Film[] = [
     director: 'Director',
     starring: ['Actor 1', 'Actor 2', 'Actor 3'],
     runTime: 60,
-    genre: 'crime',
+    genre: 'horror',
     released: 2010,
     isFavorite: true
   },
@@ -37,7 +37,7 @@ export const mockFilms: Film[] = [
     director: 'Director',
     starring: ['Actor 1', 'Actor 2', 'Actor 3'],
     runTime: 60,
-    genre: 'crime',
+    genre: 'horror',
     released: 2010,
     isFavorite: true
   },
