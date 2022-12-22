@@ -406,5 +406,5 @@ export const PROMO_FILM: Film = {
 };
 
 export function getFilmById(id: number): Film {
-  return mockFilms.filter(m => m.id === id)[0];
+  return mockFilms.filter((m) => m.id === id)[0];
 }
