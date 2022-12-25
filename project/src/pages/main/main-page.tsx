@@ -3,7 +3,9 @@ import Footer from '../../components/footer/footer';
 import Header from '../../components/header/header';
 import { Film } from '../../types/film';
 import FilmList from '../../components/film-list/film-list';
-import { ALL_GENRES } from '../../const';
+import { ALL_GENRES, SHOWN_FILMS_STEP } from '../../const';
+import {useState} from 'react';
+import ShowMore from '../../components/show_more/show_more';
 import GenresList from '../../components/genres-list/genres-list';
 import { useAppSelector } from '../../hooks/hooks';
 
@@ -14,9 +16,16 @@ type Props = {
 const MainPage: FC<Props> = (props) => {
   const { film } = props;
   const { films, activeGenre } = useAppSelector((state) => state);
+  const [visibleFilmsCount, setVisibleFilmsCount] = useState(SHOWN_FILMS_STEP);
   const genres = [ALL_GENRES].concat([...new Set(films.map((f) => f.genre))]);
   const filteredFilms = films
-    .filter((f) => f.genre === activeGenre || activeGenre === ALL_GENRES);
+    .filter((f) => f.genre === activeGenre || activeGenre === ALL_GENRES)
+    .slice(0, visibleFilmsCount);
+
+  const showMoreClick = () => {
+    setVisibleFilmsCount(visibleFilmsCount + SHOWN_FILMS_STEP);
+  };
+
   return (
     <>
       <section className="film-card">
@@ -74,9 +83,7 @@ const MainPage: FC<Props> = (props) => {
 
           <FilmList films={filteredFilms}/>
 
-          <div className="catalog__more">
-            <button className="catalog__button" type="button">Show more</button>
-          </div>
+          { filteredFilms.length % SHOWN_FILMS_STEP === 0 && <ShowMore onClick={showMoreClick}/> }
         </section>
 
         <Footer />
