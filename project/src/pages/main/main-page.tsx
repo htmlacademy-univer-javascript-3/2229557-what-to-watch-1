@@ -3,14 +3,20 @@ import Footer from '../../components/footer/footer';
 import Header from '../../components/header/header';
 import { Film } from '../../types/film';
 import FilmList from '../../components/film-list/film-list';
+import { ALL_GENRES } from '../../const';
+import GenresList from '../../components/genres-list/genres-list';
+import { useAppSelector } from '../../hooks/hooks';
 
 type Props = {
   film: Film;
-  filmsList: Film[];
 }
 
 const MainPage: FC<Props> = (props) => {
-  const { film, filmsList } = props;
+  const { film } = props;
+  const { films, activeGenre } = useAppSelector((state) => state);
+  const genres = [ALL_GENRES].concat([...new Set(films.map((f) => f.genre))]);
+  const filteredFilms = films
+    .filter((f) => f.genre === activeGenre || activeGenre === ALL_GENRES);
   return (
     <>
       <section className="film-card">
@@ -64,29 +70,9 @@ const MainPage: FC<Props> = (props) => {
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-          <ul className="catalog__genres-list">
-            {
-              [
-                'All genres',
-                'Comedies',
-                'Crime',
-                'Documentary',
-                'Dramas',
-                'Horror',
-                'Kids & Family',
-                'Romance',
-                'Sci-Fi',
-                'Thrillers'
-              ].map((item) => (
-                <li className="catalog__genres-item catalog__genres-item--active" key={item}>
-                  <a href="#" className="catalog__genres-link">{item}</a>
-                </li>))
-            }
-          </ul>
+          <GenresList genres={genres} activeGenre={activeGenre}/>
 
-          <div className="catalog__films-list">
-            <FilmList films={filmsList}/>
-          </div>
+          <FilmList films={filteredFilms}/>
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>
