@@ -2,19 +2,19 @@ import MainPage from '../../pages/main/main-page';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import NotFoundPage from '../../pages/not-found/not-found-page';
 import FilmPage from '../../pages/film/film-page';
-import { AuthorizationStatus, ROUTES} from '../../routes';
+import { ROUTES } from '../../routes';
 import PrivateRoute from '../private-route/private-route';
 import SignInPage from '../../pages/sign-in/sign-in-page';
 import MyListPage from '../../pages/my-list/my-list-page';
 import AddReviewPage from '../../pages/add-review/add-review-page';
 import PlayerPage from '../../pages/player/player-page';
 import { FC } from 'react';
-import {useAppSelector} from '../../hooks/hooks';
+import { useAppSelector } from '../../hooks/hooks';
 import Loader from '../loader/loader';
 import { ALL_GENRES } from '../../const';
 
 const App : FC = () => {
-  const {films, activeGenre, isLoaded} = useAppSelector((selector) => selector);
+  const {films, activeGenre, isLoaded, authorizationStatus} = useAppSelector((selector) => selector);
   if (!isLoaded){
     return <Loader/>;
   }
@@ -29,7 +29,7 @@ const App : FC = () => {
         <Route
           path={ROUTES.MYLIST}
           element={
-            <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}>
+            <PrivateRoute authorizationStatus={authorizationStatus}>
               <MyListPage films={filmList}/>
             </PrivateRoute>
           }
