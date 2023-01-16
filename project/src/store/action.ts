@@ -10,3 +10,4 @@ export const setFilmsLoadedStatus = createAction<boolean>('setFilmsLoadedStatus'
 export const changeAuthorizationStatus = createAction<AuthorizationStatus>('changeAuthorizationStatus');
 export const setUser = createAction<User>('setUser');
 export const redirectToRoute = createAction<ROUTES | string>('redirectToRoute');
+export const setError = createAction<string | null>('setError');

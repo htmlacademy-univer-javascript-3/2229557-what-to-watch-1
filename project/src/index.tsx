@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { ToastContainer } from 'react-toastify';
 import App from './components/app/app';
 import {Provider} from 'react-redux';
 import {store} from './store';
-import {fetchFilmsAction, checkAuthAction} from './store/api-action';
+import {fetchFilmsAction, checkAuthAction, fetchPromoFilm, getFavoriteFilmsAction} from './store/api-action';
+import { BrowserRouter } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
@@ -12,11 +12,16 @@ const root = ReactDOM.createRoot(
 
 store.dispatch(checkAuthAction());
 store.dispatch(fetchFilmsAction());
+store.dispatch(fetchPromoFilm());
+store.dispatch(checkAuthAction());
+store.dispatch(getFavoriteFilmsAction());
+
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <ToastContainer />
-      <App/>
+      <BrowserRouter>
+        <App/>
+      </BrowserRouter>
     </Provider>
   </React.StrictMode>,
 );
