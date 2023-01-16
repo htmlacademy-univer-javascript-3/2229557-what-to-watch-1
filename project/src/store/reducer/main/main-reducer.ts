@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchFilmsAction, fetchPromoFilm } from '../../api-action';
+
+import { fetchFilmsAction, fetchPromoFilm, getFavoriteFilmsAction } from '../../api-action';
 import { changeGenre } from '../../action';
 import { Namespace, ALL_GENRES } from '../../../const';
 import { MainState } from '../../../types/state';
@@ -9,7 +10,8 @@ const initialState: MainState = {
   activeGenre: ALL_GENRES,
   promoFilm: null,
   error: null,
-  isLoaded: false
+  isLoaded: false,
+  favoriteFilms: []
 };
 
 export const mainReducer = createSlice({
@@ -30,6 +32,9 @@ export const mainReducer = createSlice({
       .addCase(fetchFilmsAction.fulfilled, (state, action) => {
         state.films = action.payload;
         state.isLoaded = true;
+      })
+      .addCase(getFavoriteFilmsAction.fulfilled, (state, action) => {
+        state.favoriteFilms = action.payload;
       });
   }
 });

@@ -1,17 +1,19 @@
 import { FC } from 'react';
-import Footer from '../../components/footer/footer';
-import Header from '../../components/header/header';
-import FilmList from '../../components/film-list/film-list';
-import { ALL_GENRES, SHOWN_FILMS_STEP } from '../../const';
+import { Link } from 'react-router-dom';
 import {useState} from 'react';
-import ShowMore from '../../components/show_more/show_more';
-import GenresList from '../../components/genres-list/genres-list';
+
+import { ALL_GENRES, SHOWN_FILMS_STEP } from '../../const';
 import { useAppSelector } from '../../hooks/hooks';
 import { getActiveGenre, getFilms, getPromoFilm } from '../../store/reducer/main/main-selector';
 import { getAuthorizationStatus } from '../../store/reducer/user/user-selector';
 import { AuthorizationStatus } from '../../const';
-import { Link } from 'react-router-dom';
-import PlayButton from '../../components/play-button/play-button';
+
+import ShowMore from '../../components/show_more/show_more';
+import GenresList from '../../components/genres-list/genres-list';
+import Footer from '../../components/footer/footer';
+import Header from '../../components/header/header';
+import FilmList from '../../components/film-list/film-list';
+import PlayButton from '../../components/player/play-button/play-button';
 import MyListButton from '../../components/my-list-button/my-list-button';
 
 const MainPage: FC = () => {
@@ -22,8 +24,7 @@ const MainPage: FC = () => {
   const [visibleFilmsCount, setVisibleFilmsCount] = useState(SHOWN_FILMS_STEP);
   const genres = [ALL_GENRES].concat([...new Set(films.map((f) => f.genre))]);
   const filteredFilms = films
-    .filter((f) => f.genre === activeGenre || activeGenre === ALL_GENRES)
-    .slice(0, visibleFilmsCount);
+    .filter((f) => f.genre === activeGenre || activeGenre === ALL_GENRES);
 
   const showMoreClick = () => {
     setVisibleFilmsCount(visibleFilmsCount + SHOWN_FILMS_STEP);
@@ -35,7 +36,7 @@ const MainPage: FC = () => {
         <Header />
 
         <div className="film-card__bg">
-          <img src={film?.posterImage} alt={film?.name}/>
+          <img src={film?.backgroundImage} alt={film?.name}/>
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -60,7 +61,7 @@ const MainPage: FC = () => {
 
               <div className="film-card__buttons">
                 <Link to={`/player/${film?.id ?? 0}`} className="btn btn--play film-card__button">
-                  <PlayButton isPlay/>
+                  <PlayButton/>
                 </Link>
                 { authorizationStatus === AuthorizationStatus.Auth ? <MyListButton film={film}/> : null }
               </div>
@@ -73,11 +74,11 @@ const MainPage: FC = () => {
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-          <GenresList genres={genres} activeGenre={activeGenre}/>
+          <GenresList genres={genres.slice(0, 10)} activeGenre={activeGenre}/>
 
-          <FilmList films={filteredFilms}/>
+          <FilmList films={filteredFilms.slice(0, visibleFilmsCount)}/>
 
-          { filteredFilms.length % SHOWN_FILMS_STEP === 0 && <ShowMore onClick={showMoreClick}/> }
+          {visibleFilmsCount + SHOWN_FILMS_STEP < filteredFilms.length && <ShowMore onClick={showMoreClick}/> }
         </section>
 
         <Footer />

@@ -1,5 +1,6 @@
 import {AxiosInstance} from 'axios';
 import {createAsyncThunk} from '@reduxjs/toolkit';
+
 import {Film} from '../types/film';
 import {User} from '../types/user';
 import {AppDispatch, State} from '../types/state';
@@ -21,17 +22,17 @@ export const fetchFilmsAction = createAsyncThunk<Film[], undefined, ApiConfig>(
   },
 );
 
-export const fetchFilmById = createAsyncThunk<Film, string, ApiConfig>(
+export const fetchFilmById = createAsyncThunk<Film, number, ApiConfig>(
   'fetchFilmById',
-  async (filmId: string, { extra: api }) => {
+  async (filmId: number, { extra: api }) => {
     const resp = await api.get<Film>(`${APIRoute.Films}/${filmId}`);
     return resp.data;
   }
 );
 
-export const fetchReviewsById = createAsyncThunk<Review[], string, ApiConfig>(
+export const fetchReviewsById = createAsyncThunk<Review[], number, ApiConfig>(
   'fetchReviewsById',
-  async (filmId: string, { extra: api }) => {
+  async (filmId: number, { extra: api }) => {
     const resp = await api.get<Review[]>(
       `${APIRoute.Comments}/${filmId}`
     );
@@ -39,9 +40,9 @@ export const fetchReviewsById = createAsyncThunk<Review[], string, ApiConfig>(
   }
 );
 
-export const fetchSimilarById = createAsyncThunk<Film[], string, ApiConfig>(
+export const fetchSimilarById = createAsyncThunk<Film[], number, ApiConfig>(
   'fetchSimilarById',
-  async (filmId: string, { extra: api }) => {
+  async (filmId: number, { extra: api }) => {
     const resp = await api.get<Film[]>(
       `${APIRoute.Films}/${filmId}${APIRoute.Similar}`
     );
