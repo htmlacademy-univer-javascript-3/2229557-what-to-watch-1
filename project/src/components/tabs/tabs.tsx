@@ -1,10 +1,12 @@
-import {Film} from '../../types/film';
-import {FC, useState} from 'react';
+import { FC, useState } from 'react';
+
+import { Film } from '../../types/film';
+import { Review } from '../../types/review';
+
 import FilmTabItem from './tabs-item';
 import FilmDetailsTab from './film-details-tab/film-details-tab';
 import FilmOverviewTab from './film-overview-tab/film-overview-tab';
 import FilmReviewsTab from './film-review-tab/film-review-tab';
-import {Review} from '../../types/review';
 
 const TABS = ['Overview', 'Details', 'Reviews'];
 

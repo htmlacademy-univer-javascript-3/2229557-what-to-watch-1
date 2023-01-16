@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+
 import { FilmState } from '../../../types/state';
 import { Namespace } from '../../../const';
 import { fetchFilmById, fetchReviewsById, fetchSimilarById } from '../../api-action';

@@ -1,5 +1,6 @@
-import {Review} from '../../types/review';
 import {FC} from 'react';
+
+import {Review} from '../../types/review';
 
 type Props = {
   review: Review;

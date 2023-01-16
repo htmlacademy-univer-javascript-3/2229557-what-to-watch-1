@@ -19,7 +19,8 @@ export type MainState = {
   promoFilm: Film | null,
   activeGenre: string,
   isLoaded: boolean,
-  error: string | null
+  error: string | null,
+  favoriteFilms: Film[]
 }
 
 export type UserState = {

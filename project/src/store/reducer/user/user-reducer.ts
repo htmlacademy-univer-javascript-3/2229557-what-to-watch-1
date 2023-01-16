@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+
 import { checkAuthAction, loginAction, logoutAction } from '../../api-action';
 import { dropToken, saveToken } from '../../../services/token';
 import { UserState } from '../../../types/state';
